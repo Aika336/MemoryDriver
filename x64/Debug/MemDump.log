@@ -1,0 +1,10 @@
+﻿  Building 'MemDump' with toolset 'WindowsKernelModeDriver10.0' and the 'Desktop' target platform.
+  Exponentiation.c
+  MemoryReader.c
+  Создание кода...
+  MemDump.vcxproj -> C:\Users\Aika\source\repos\MemDump\x64\Debug\MemDump.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\Aika\source\repos\MemDump\x64\Debug\MemDump.sys
+  
+  DrvCat task was skipped as there was no catalog file to process
+  
