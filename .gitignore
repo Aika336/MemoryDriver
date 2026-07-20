@@ -54,3 +54,5 @@ Thumbs.db
 # ==== IDE ====
 .idea/
 *.swp
+*.vcxproj
+*.filters
