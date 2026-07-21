@@ -1,6 +1,9 @@
 #include "../header/DeviceRaii.h"
 
 #include <stdexcept>
+#include <string>
+
+HANDLE DeviceRaii::hDevice = nullptr;
 
 DeviceRaii::DeviceRaii() {
 	hDevice = CreateFileW(
@@ -10,7 +13,7 @@ DeviceRaii::DeviceRaii() {
 	);
 
 	if (!hDevice) {
-		throw std::runtime_error("CreaetFile failed: " + GetLastError());
+		throw std::runtime_error("CreaetFile failed: " + std::to_string(GetLastError()));
 	}
 }
 
