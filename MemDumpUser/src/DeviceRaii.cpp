@@ -18,5 +18,7 @@ DeviceRaii::DeviceRaii() {
 }
 
 DeviceRaii::~DeviceRaii() {
-
+	if (hDevice) {
+		CloseHandle(hDevice);
+	}
 }
