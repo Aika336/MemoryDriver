@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-#define DeviceSymbolicName L"\\.\MemReader"
+#define DeviceSymbolicName L"\\\\.\\MemReader"
 
 struct DeviceRaii {
     DeviceRaii();
