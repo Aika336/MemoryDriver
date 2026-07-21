@@ -1,7 +1,9 @@
 #include <Windows.h>
 
+#define MAX_PROCESS_NAME 15
+
 typedef struct _READ_REQUEST {
-	UCHAR* targetName;
+	CHAR targetName[MAX_PROCESS_NAME];
 	ULONG handle;
 	ULONG_PTR  Address;
 	ULONG Size;
