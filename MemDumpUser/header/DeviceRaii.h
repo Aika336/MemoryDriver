@@ -6,5 +6,5 @@ struct DeviceRaii {
     DeviceRaii();
     ~DeviceRaii();
 
-    static HANDLE hDevice;
+    HANDLE hDevice;
 };

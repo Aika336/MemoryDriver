@@ -3,8 +3,6 @@
 #include <stdexcept>
 #include <string>
 
-HANDLE DeviceRaii::hDevice = nullptr;
-
 DeviceRaii::DeviceRaii() {
 	hDevice = CreateFileW(
 		DeviceSymbolicName,
