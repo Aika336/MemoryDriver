@@ -96,17 +96,13 @@
   <ItemGroup>
     <ClInclude Include="Math\Exponentiation.h" />
     <ClInclude Include="Math\math.h" />
-    <ClInclude Include="MemDriver\src\driver.h" />
-    <ClInclude Include="MemDriver\src\MemoryReader.h" />
-    <ClInclude Include="MemDriver\user\DeviceControl.h" />
-    <ClInclude Include="MemDriver\user\ReadProcessMemoryW.h" />
+    <ClInclude Include="MemDriver\header\driver.h" />
+    <ClInclude Include="MemDriver\header\MemoryReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\Exponentiation.c" />
     <ClCompile Include="MemDriver\src\driver.c" />
     <ClCompile Include="MemDriver\src\MemoryReader.c" />
-    <ClCompile Include="MemDriver\user\DeviceControl.cpp" />
-    <ClCompile Include="MemDriver\user\ReadProcessMemoryW.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,12 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MemDriver\src\driver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemDriver\src\MemoryReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MemDriver\user\ReadProcessMemoryW.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -34,7 +28,13 @@
     <ClInclude Include="Math\math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MemDriver\user\DeviceControl.h">
+    <ClInclude Include="MemDriver\user\DeviceRaii.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\header\driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\header\MemoryReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -48,10 +48,10 @@
     <ClCompile Include="Math\Exponentiation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemDriver\user\DeviceControl.cpp">
+    <ClCompile Include="MemDriver\user\ReadProcessMemoryW.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemDriver\user\ReadProcessMemoryW.cpp">
+    <ClCompile Include="MemDriver\user\DeviceRaii.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

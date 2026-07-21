@@ -1,4 +1,4 @@
-#include "MemoryReader.h"
+#include "../header/MemoryReader.h"
 #include "../../Math/math.h"
 
 NTSTATUS NameReadRequest(UCHAR* targetName, PVOID address, ULONG size, PVOID outBuffer) {

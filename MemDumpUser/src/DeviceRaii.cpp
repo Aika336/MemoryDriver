@@ -1,4 +1,5 @@
-#include "DeviceRaii.h"
+#include "../header/DeviceRaii.h"
+
 #include <stdexcept>
 
 DeviceRaii::DeviceRaii() {

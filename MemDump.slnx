@@ -6,4 +6,7 @@
   <Project Path="MemDump/MemDump.vcxproj">
     <Deploy />
   </Project>
+  <Project Path="MemDumpUser/MemDumpUser.vcxproj" Id="4cf3f486-f74a-4686-820e-f2ee7780d731">
+    <Platform Project="x64" />
+  </Project>
 </Solution>
