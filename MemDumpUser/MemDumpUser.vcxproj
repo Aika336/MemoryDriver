@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\DeviceRaii.h" />
+    <ClInclude Include="header\IoCtlCodes.h" />
     <ClInclude Include="header\ReadProcessMemoryW.h" />
+    <ClInclude Include="header\Requests.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
