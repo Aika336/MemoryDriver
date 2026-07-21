@@ -1,15 +1,11 @@
-# ==== Visual Studio build output ====
+# ==== Visual Studio / MSBuild ====
 [Dd]ebug/
 [Rr]elease/
 x64/
 x86/
 ARM/
 ARM64/
-[Bb]in/
-[Oo]bj/
 .vs/
-
-# ==== VS user-specific / local files ====
 *.user
 *.suo
 *.sdf
@@ -30,11 +26,10 @@ ARM64/
 *.sys
 *.cer
 *.cat
+*.inf
 BuildLog.htm
-*.inf.tmp
-*.PublicKey.cer
 
-# ==== IncrediBuild / MSBuild ====
+# ==== IncrediBuild / MSBuild temp ====
 *.iobj
 *.ipdb
 *.tmp
@@ -43,16 +38,8 @@ BuildLog.htm
 *_p.c
 *.pch
 
-# ==== Package managers (if you add Conan/vcpkg later) ====
-conan.lock
-CMakeUserPresets.json
-
-# ==== OS junk ====
+# ==== OS / IDE junk ====
 Thumbs.db
 .DS_Store
-
-# ==== IDE ====
 .idea/
 *.swp
-*.vcxproj
-*.filters
