@@ -23,6 +23,7 @@
     <ClInclude Include="header\ReadProcessMemoryW.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\DeviceRaii.cpp" />
     <ClCompile Include="src\ReadProcessMemoryW.cpp" />
   </ItemGroup>
