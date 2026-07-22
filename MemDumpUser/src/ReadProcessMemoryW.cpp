@@ -8,7 +8,7 @@
 #include <ntstatus.h>
 
 NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
-	if (!address || !outBuffer || size < 0) {
+	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
 		return STATUS_INVALID_PARAMETER;
 	}
 	
@@ -29,6 +29,9 @@ NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBu
 
 	if (!state) {
 		return STATUS_FATAL_APP_EXIT;
+	}
+	else if (size != bytesRet) {
+		return STATUS_BUFFER_OVERFLOW;
 	}
 	
 	return STATUS_SUCCESS;
