@@ -7,8 +7,9 @@ NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outB
 
     const int pidDevider = 4;
     const int maxProcessName = 15;
+    int maxProcessIdes = Exponent(2, 16);
 
-    for (int i = pidDevider; i <= Exponent(2,16); i += pidDevider) {
+    for (int i = pidDevider; i <= maxProcessIdes; i += pidDevider) {
         PEPROCESS candidate = NULL;
 
         NTSTATUS status = PsLookupProcessByProcessId((HANDLE)i, &candidate);
