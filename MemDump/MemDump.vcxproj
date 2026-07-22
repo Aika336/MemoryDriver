@@ -97,12 +97,12 @@
     <ClInclude Include="Math\Exponentiation.h" />
     <ClInclude Include="Math\math.h" />
     <ClInclude Include="MemDriver\header\driver.h" />
-    <ClInclude Include="MemDriver\header\MemoryReader.h" />
+    <ClInclude Include="MemDriver\ReadMemory\MemoryReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\Exponentiation.c" />
+    <ClCompile Include="MemDriver\ReadMemory\MemoryReader.c" />
     <ClCompile Include="MemDriver\src\driver.c" />
-    <ClCompile Include="MemDriver\src\MemoryReader.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

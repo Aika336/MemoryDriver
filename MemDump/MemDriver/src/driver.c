@@ -1,5 +1,5 @@
 #include "../header/driver.h"
-#include "../header/MemoryReader.h"
+#include "../ReadMemory/MemoryReader.h"
 
 #define DEVICE_NAME L"\\Device\\MemReader"
 #define SYMLINK_NAME L"\\DosDevices\\MemReader"

@@ -19,15 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\DeviceRaii.h" />
-    <ClInclude Include="header\IoCtlCodes.h" />
-    <ClInclude Include="header\ReadProcessMemoryW.h" />
-    <ClInclude Include="header\Requests.h" />
+    <ClInclude Include="Driver\DeviceRaii.h" />
+    <ClInclude Include="Driver\IoCtlCodes.h" />
+    <ClInclude Include="Driver\Requests.h" />
+    <ClInclude Include="ReaderMemory\ReadProcessMemoryW.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Driver\DeviceRaii.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\DeviceRaii.cpp" />
-    <ClCompile Include="src\ReadProcessMemoryW.cpp" />
+    <ClCompile Include="ReaderMemory\ReadProcessMemoryW.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

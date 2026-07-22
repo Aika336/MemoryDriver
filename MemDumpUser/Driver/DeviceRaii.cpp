@@ -1,4 +1,4 @@
-#include "../header/DeviceRaii.h"
+#include "DeviceRaii.h"
 
 #include <stdexcept>
 #include <string>

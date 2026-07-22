@@ -15,27 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\DeviceRaii.h">
+    <ClInclude Include="Driver\DeviceRaii.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="header\ReadProcessMemoryW.h">
+    <ClInclude Include="Driver\IoCtlCodes.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="header\Requests.h">
+    <ClInclude Include="Driver\Requests.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="header\IoCtlCodes.h">
+    <ClInclude Include="ReaderMemory\ReadProcessMemoryW.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\DeviceRaii.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ReadProcessMemoryW.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver\DeviceRaii.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ReaderMemory\ReadProcessMemoryW.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

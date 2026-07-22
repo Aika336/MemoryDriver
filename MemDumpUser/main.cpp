@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <winternl.h>
 
-#include "header/ReadProcessMemoryW.h"
+#include "ReaderMemory/ReadProcessMemoryW.h"
 
 int main() {
 	int size;
@@ -12,7 +12,7 @@ int main() {
 	int arr[10];
 
 	try {
-		NTSTATUS status = ReadProcessMemoryW("HackMe.exe", (LPVOID)(0x2619CFFB50), (LPVOID)arr, 40);
+		NTSTATUS status = ReadProcessMemoryW("HackMe.exe", (LPVOID)(0xF02492F810), (LPVOID)arr, 40);
 		if (!NT_SUCCESS(status)) {
 			std::cout << "Failed #1" << std::endl;
 			std::cin >> size;

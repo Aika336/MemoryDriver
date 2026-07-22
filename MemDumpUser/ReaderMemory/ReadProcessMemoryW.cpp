@@ -1,11 +1,13 @@
-#include "../header/ReadProcessMemoryW.h"
-#include "../header/DeviceRaii.h"
-#include "../header/IoCtlCodes.h"
-#include "../header/Requests.h"
+#include "../ReaderMemory/ReadProcessMemoryW.h"
+#include "../Driver/DeviceRaii.h"
+#include "../Driver/IoCtlCodes.h"
+#include "../Driver/Requests.h"
 
 #include <stdexcept>
 #include <string>
 #include <ntstatus.h>
+
+#include <iostream>
 
 NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
@@ -16,7 +18,7 @@ NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBu
 
 	READ_REQUEST request{ (char*)targetName, NULL, (ULONG_PTR)address, size};
 
-	DWORD bytesRet = 0;
+	DWORD bytesRet;
 
 	BOOL state = DeviceIoControl(
 		device.hDevice,
