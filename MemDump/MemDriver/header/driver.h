@@ -7,7 +7,7 @@
 #define IOCTL_READ_MEMORY_BY_NAME \
 	CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
-typedef struct _READ_REQUEST {
+typedef struct READ_REQUEST {
 	PCHAR targetName;
 	ULONG handle;
 	ULONG_PTR  Address;

@@ -1,6 +1,6 @@
 #include <Windows.h>
 
-typedef struct _READ_REQUEST {
+typedef struct READ_REQUEST {
 	PCHAR targetName;
 	ULONG handle;
 	ULONG_PTR  Address;

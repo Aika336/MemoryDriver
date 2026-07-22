@@ -14,7 +14,7 @@ NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBu
 	
 	DeviceRaii device;
 
-	_READ_REQUEST request{ (char*)targetName, NULL, (ULONG_PTR)address, size};
+	READ_REQUEST request{ (char*)targetName, NULL, (ULONG_PTR)address, size};
 
 	DWORD bytesRet = 0;
 
@@ -41,7 +41,7 @@ NTSTATUS ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size)
 
 	DeviceRaii device;
 
-	_READ_REQUEST request{ NULL, pId, (ULONG_PTR)address, size };
+	READ_REQUEST request{ NULL, pId, (ULONG_PTR)address, size };
 	DWORD bytesRet = 0;
 
 	BOOL state = DeviceIoControl(
