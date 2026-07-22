@@ -7,5 +7,5 @@ PsGetProcessImageFileName(
     _In_ PEPROCESS Process
 );
 
-NTSTATUS NameReadRequest(UCHAR* targetName, PVOID address, ULONG size, PVOID outBuffer);
+NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outBuffer);
 NTSTATUS HandleReadRequest(ULONG pid, PVOID address, ULONG size, PVOID outBuffer);

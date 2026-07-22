@@ -1,7 +1,7 @@
 #include "../header/MemoryReader.h"
 #include "../../Math/math.h"
 
-NTSTATUS NameReadRequest(UCHAR* targetName, PVOID address, ULONG size, PVOID outBuffer) {
+NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outBuffer) {
     PEPROCESS process = NULL;
     BOOLEAN found = FALSE;
 
@@ -18,7 +18,7 @@ NTSTATUS NameReadRequest(UCHAR* targetName, PVOID address, ULONG size, PVOID out
 
         PCHAR processName = PsGetProcessImageFileName(candidate);
 
-        if (processName && strncmp(processName, (char*)targetName, maxProcessName) == 0) {
+        if (processName && strncmp(processName, targetName, maxProcessName) == 0) {
             process = candidate;
             found = TRUE;
             break;

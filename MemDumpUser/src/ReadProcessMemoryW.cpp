@@ -7,21 +7,22 @@
 #include <string>
 #include <ntstatus.h>
 
-NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
+NTSTATUS ReadProcessMemoryW(char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}
 	
 	DeviceRaii device;
 
-	_READ_REQUEST request{ (UCHAR*)targetName, NULL, (ULONG_PTR)address, size};
+	_READ_REQUEST request{ targetName, NULL, (ULONG_PTR)address, size};
+
 	DWORD bytesRet = 0;
 
 	BOOL state = DeviceIoControl(
 		device.hDevice,
 		IOCTL_READ_MEMORY_BY_NAME,
 		&request, sizeof(request),
-		&outBuffer, size,
+		outBuffer, size,
 		&bytesRet,
 		NULL
 	);
