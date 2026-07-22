@@ -32,9 +32,7 @@ NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBu
 	if (!state) {
 		return STATUS_FATAL_APP_EXIT;
 	}
-	else if (size != bytesRet) {
-		return STATUS_BUFFER_OVERFLOW;
-	}
+	// Add check for a returned size
 	
 	return STATUS_SUCCESS;
 }
