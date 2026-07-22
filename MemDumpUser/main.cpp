@@ -12,7 +12,7 @@ int main() {
 	int arr[10];
 
 	try {
-		NTSTATUS status = ReadProcessMemoryW(name, (LPVOID)(0x2619CFFB50), (LPVOID)arr, 40);
+		NTSTATUS status = ReadProcessMemoryW("HackMe.exe", (LPVOID)(0x2619CFFB50), (LPVOID)arr, 40);
 		if (!NT_SUCCESS(status)) {
 			std::cout << "Failed #1" << std::endl;
 			std::cin >> size;

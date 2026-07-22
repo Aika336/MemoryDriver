@@ -7,14 +7,14 @@
 #include <string>
 #include <ntstatus.h>
 
-NTSTATUS ReadProcessMemoryW(char* targetName, LPVOID address, LPVOID outBuffer, int size) {
+NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}
 	
 	DeviceRaii device;
 
-	_READ_REQUEST request{ targetName, NULL, (ULONG_PTR)address, size};
+	_READ_REQUEST request{ (char*)targetName, NULL, (ULONG_PTR)address, size};
 
 	DWORD bytesRet = 0;
 
