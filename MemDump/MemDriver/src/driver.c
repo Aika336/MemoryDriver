@@ -1,5 +1,6 @@
 #include "../header/driver.h"
 #include "../ReadMemory/MemoryReader.h"
+#include "../WriteMemory/MemoryWriter.h"
 
 #define DEVICE_NAME L"\\Device\\MemReader"
 #define SYMLINK_NAME L"\\DosDevices\\MemReader"
@@ -64,7 +65,23 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
     }
     case CTL_WRITE_MEMORY_BY_HANDLE:    // Write data in address of taarget process (by process id)
     {
+        if (inLen != sizeof(WRITE_REQUEST)) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
 
+        PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+        if (outLen < req->Size) {
+            status = STATUS_BUFFER_TOO_SMALL;
+            break;
+        }
+
+        status = HandleWriteRequest(req->handle, req->targetAddress, req->dataBuffer, req->Size);
+
+        if (NT_SUCCESS(status)) {
+            bytesReturned = req->Size;
+        }
+        break;
     }
     case CTL_WRITE_MEMORY_BY_NAME:    // Write data in address of taarget process (by process name)
     {
