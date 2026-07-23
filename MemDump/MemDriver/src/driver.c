@@ -71,11 +71,6 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         }
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
-        if (outLen < req->Size) {
-            status = STATUS_BUFFER_TOO_SMALL;
-            break;
-        }
-
         status = HandleWriteRequest(req->handle, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
 
         if (NT_SUCCESS(status)) {
@@ -91,11 +86,6 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         }
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
-        if (outLen < req->Size) {
-            status = STATUS_BUFFER_TOO_SMALL;
-            break;
-        }
-
         status = NameWriteRequest(req->targetName, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
 
         if (NT_SUCCESS(status)) {
