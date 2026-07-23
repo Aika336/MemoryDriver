@@ -31,6 +31,12 @@
     <ClInclude Include="MemDriver\ReadMemory\MemoryReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MemDriver\WriteMemory\MemoryWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\ProcessManager\ProcessFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MemDriver\src\driver.c">
@@ -40,6 +46,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MemDriver\ReadMemory\MemoryReader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemDriver\WriteMemory\MemoryWriter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemDriver\ProcessManager\ProcessFinder.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
