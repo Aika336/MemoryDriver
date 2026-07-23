@@ -76,7 +76,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
             break;
         }
 
-        status = HandleWriteRequest(req->handle, req->targetAddress, req->dataBuffer, req->Size);
+        status = HandleWriteRequest(req->handle, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
 
         if (NT_SUCCESS(status)) {
             bytesReturned = req->Size;
@@ -85,7 +85,23 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
     }
     case CTL_WRITE_MEMORY_BY_NAME:    // Write data in address of taarget process (by process name)
     {
+        if (inLen != sizeof(WRITE_REQUEST)) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
 
+        PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+        if (outLen < req->Size) {
+            status = STATUS_BUFFER_TOO_SMALL;
+            break;
+        }
+
+        status = NameWriteRequest(req->targetName, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
+
+        if (NT_SUCCESS(status)) {
+            bytesReturned = req->Size;
+        }
+        break;
     }
     default:
         status = STATUS_INVALID_DEVICE_REQUEST;
