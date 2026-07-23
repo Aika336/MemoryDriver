@@ -1,34 +1,10 @@
 #include "../ReadMemory/MemoryReader.h"
-#include "../../Math/math.h"
+#include "../ProcessManager/ProcessFinder.h"
 
 NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outBuffer) {
-    PEPROCESS process = NULL;
-    BOOLEAN found = FALSE;
-
-    const int pidDevider = 4;
-    const int maxProcessName = 15;
-    int maxProcessIdes = Exponent(2, 16);
-
-    for (int i = pidDevider; i <= maxProcessIdes; i += pidDevider) {
-        PEPROCESS candidate = NULL;
-
-        NTSTATUS status = PsLookupProcessByProcessId((HANDLE)i, &candidate);
-        if (!NT_SUCCESS(status)) {
-            continue;
-        }
-
-        PCHAR processName = PsGetProcessImageFileName(candidate);
-
-        if (processName && strncmp(processName, targetName, maxProcessName) == 0) {
-            process = candidate;
-            found = TRUE;
-            break;
-        }
-
-        ObDereferenceObject(candidate);
-    }
+    PEPROCESS process = FindProcessByName(targetName);
     
-    if (!found) {
+    if (!process) {
         return STATUS_NOT_FOUND;
     }
 
