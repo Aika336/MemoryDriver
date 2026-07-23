@@ -18,7 +18,7 @@ NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outB
         RtlCopyMemory(outBuffer, address, size);
         status = STATUS_SUCCESS;
     }
-    __except (EXCEPTION_EXECUTE_HANDLER) {
+    __except (EXCEPTION_EXECUTE_HANDLER) {  
         status = GetExceptionCode();
     }
 
