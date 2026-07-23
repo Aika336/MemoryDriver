@@ -23,11 +23,13 @@
     <ClInclude Include="Driver\IoCtlCodes.h" />
     <ClInclude Include="Driver\Requests.h" />
     <ClInclude Include="ReaderMemory\ReadProcessMemoryW.h" />
+    <ClInclude Include="WriterMemory\WriteProcessMemory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Driver\DeviceRaii.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ReaderMemory\ReadProcessMemoryW.cpp" />
+    <ClCompile Include="WriterMemory\WriteProcessMemory.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
