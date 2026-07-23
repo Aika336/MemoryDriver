@@ -1,10 +1,9 @@
 #include "ProcessFinder.h"
 #include "../../Math/math.h"
 
-PEPROCESS FindProcessByName(UCHAR targetName) {
-    PEPROCESS process = NULL;
-    BOOLEAN found = FALSE;
+#include <ntddk.h>
 
+PEPROCESS FindProcessByName(PCHAR targetName) {
     const int pidDevider = 4;
     const int maxProcessName = 15;
     int maxProcessIdes = Exponent(2, 16);
@@ -20,13 +19,11 @@ PEPROCESS FindProcessByName(UCHAR targetName) {
         PCHAR processName = PsGetProcessImageFileName(candidate);
 
         if (processName && strncmp(processName, targetName, maxProcessName) == 0) {
-            process = candidate;
-            found = TRUE;
-            break;
+            return candidate;
         }
 
         ObDereferenceObject(candidate);
     }
 
-    return process;
+    return NULL;
 }
