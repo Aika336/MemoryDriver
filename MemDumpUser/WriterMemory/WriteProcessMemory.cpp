@@ -33,7 +33,7 @@ NTSTATUS WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOI
 	return STATUS_SUCCESS;
 }
 
-NTSTATUS WriteProcessMemoryW(ULONG processId, LPVOID targetAddress, LPVOID dataBuffer, int size) {
+NTSTATUS WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuffer, int size) {
 	if (!targetAddress || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}
