@@ -5,6 +5,7 @@
 
 struct DeviceRaii {
     DeviceRaii();
+    DeviceRaii(DWORD desiredAccess);
     ~DeviceRaii();
 
     HANDLE hDevice;
