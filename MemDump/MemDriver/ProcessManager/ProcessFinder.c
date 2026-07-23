@@ -1,8 +1,6 @@
 #include "ProcessFinder.h"
 #include "../../Math/math.h"
 
-#include <ntddk.h>
-
 PEPROCESS FindProcessByName(PCHAR targetName) {
     const int pidDevider = 4;
     const int maxProcessName = 15;
