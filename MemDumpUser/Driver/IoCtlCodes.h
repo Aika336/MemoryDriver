@@ -1,3 +1,4 @@
+#pragma once
 #include <Windows.h>
 
 #define IOCTL_READ_MEMORY_BY_HANDLE \
