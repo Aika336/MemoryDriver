@@ -19,7 +19,7 @@ NTSTATUS WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOI
 
 	BOOL state = DeviceIoControl(
 		device.hDevice,
-		IOCTL_READ_MEMORY_BY_NAME,
+		CTL_WRITE_MEMORY_BY_NAME,
 		&request, sizeof(request),
 		NULL, 0,
 		&bytesRet,
@@ -46,7 +46,7 @@ NTSTATUS WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuf
 
 	BOOL state = DeviceIoControl(
 		device.hDevice,
-		IOCTL_READ_MEMORY_BY_NAME,
+		CTL_WRITE_MEMORY_BY_HANDLE,
 		&request, sizeof(request),
 		NULL, 0,
 		&bytesRet,
