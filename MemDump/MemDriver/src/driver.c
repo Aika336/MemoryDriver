@@ -18,7 +18,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
     switch (ioctl)
     {
-    case IOCTL_READ_MEMORY_BY_HANDLE:
+    case IOCTL_READ_MEMORY_BY_HANDLE:   // Read memory in a target process by name of process
     {
         if (inLen != sizeof(READ_REQUEST)) {
             status = STATUS_INVALID_PARAMETER;
@@ -40,7 +40,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         break;
 
     }
-    case IOCTL_READ_MEMORY_BY_NAME:
+    case IOCTL_READ_MEMORY_BY_NAME:     // Read memory in a target process by process id 
     {
         if (inLen != sizeof(READ_REQUEST)) {
             status = STATUS_INVALID_PARAMETER;
@@ -61,6 +61,14 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         }
 
         break;
+    }
+    case CTL_WRITE_MEMORY_BY_HANDLE:    // Write data in address of taarget process (by process id)
+    {
+
+    }
+    case CTL_WRITE_MEMORY_BY_NAME:    // Write data in address of taarget process (by process name)
+    {
+
     }
     default:
         status = STATUS_INVALID_DEVICE_REQUEST;
