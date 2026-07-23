@@ -1,4 +1,5 @@
 #include "ProcessFinder.h"
+#include "../../Math/math.h"
 
 PEPROCESS FindProcessByName(UCHAR targetName) {
     PEPROCESS process = NULL;
