@@ -19,19 +19,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MemDriver\src\driver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemDriver\src\MemoryReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MemDriver\user\ReadProcessMemoryW.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Math\Exponentiation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Math\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\header\driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\ReadMemory\MemoryReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\WriteMemory\MemoryWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDriver\ProcessManager\ProcessFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,13 +42,16 @@
     <ClCompile Include="MemDriver\src\driver.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MemDriver\src\MemoryReader.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MemDriver\user\ReadProcessMemoryW.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Math\Exponentiation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemDriver\ReadMemory\MemoryReader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemDriver\WriteMemory\MemoryWriter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MemDriver\ProcessManager\ProcessFinder.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

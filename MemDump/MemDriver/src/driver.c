@@ -1,5 +1,6 @@
-#include "driver.h"
-#include "MemoryReader.h"
+#include "../header/driver.h"
+#include "../ReadMemory/MemoryReader.h"
+#include "../WriteMemory/MemoryWriter.h"
 
 #define DEVICE_NAME L"\\Device\\MemReader"
 #define SYMLINK_NAME L"\\DosDevices\\MemReader"
@@ -18,7 +19,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
     switch (ioctl)
     {
-    case IOCTL_READ_MEMORY_BY_HANDLE:
+    case IOCTL_READ_MEMORY_BY_HANDLE:   // Read memory in a target process by process id
     {
         if (inLen != sizeof(READ_REQUEST)) {
             status = STATUS_INVALID_PARAMETER;
@@ -40,7 +41,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         break;
 
     }
-    case IOCTL_READ_MEMORY_BY_NAME:
+    case IOCTL_READ_MEMORY_BY_NAME:     // Read memory in a target process by name of process
     {
         if (inLen != sizeof(READ_REQUEST)) {
             status = STATUS_INVALID_PARAMETER;
@@ -60,6 +61,48 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
             bytesReturned = req->Size;
         }
 
+        break;
+    }
+    case CTL_WRITE_MEMORY_BY_HANDLE:    // Write data in address of target process (by process id)
+    {
+        if (inLen != sizeof(WRITE_REQUEST)) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
+        PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+
+        if (!req->targetAddress || !req->dataBuffer || req->Size <= 0) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
+        status = HandleWriteRequest(req->handle, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
+
+        if (NT_SUCCESS(status)) {
+            bytesReturned = req->Size;
+        }
+        break;
+    }
+    case CTL_WRITE_MEMORY_BY_NAME:    // Write data in address of taarget process (by process name)
+    {
+        if (inLen != sizeof(WRITE_REQUEST)) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
+        PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+
+        if (!req->targetAddress || !req->dataBuffer || req->Size <= 0) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
+        status = NameWriteRequest(req->targetName, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
+
+        if (NT_SUCCESS(status)) {
+            bytesReturned = req->Size;
+        }
         break;
     }
     default:
