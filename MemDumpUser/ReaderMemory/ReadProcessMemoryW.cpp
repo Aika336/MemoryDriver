@@ -8,7 +8,7 @@
 #include <ntstatus.h>
 
 bool ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
-	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
+	if (!targetName || !address || !outBuffer || size < 0 || strlen(targetName) <= 0) {
 		throw std::invalid_argument("Invalid parameters passed to ReadProcessMemoryW");
 	}
 	
@@ -33,7 +33,7 @@ bool ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer
 }
 
 bool ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
-	if (!address || !outBuffer || size < 0) {
+	if (!address || !outBuffer || pId < 4 || size < 0) {
 		throw std::invalid_argument("Invalid parameters passed to ReadProcessMemoryW");
 	}
 
