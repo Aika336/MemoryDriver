@@ -4,11 +4,12 @@
 #include "../Driver/IoCtlCodes.h"
 #include "../Driver/Requests.h"
 
+#include <stdexcept>
 #include <ntstatus.h>
 
 bool WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOID dataBuffer, int size) {
 	if (!targetName || !targetAddress || size < 0 || strlen(targetName) > 15) {
-		return STATUS_INVALID_PARAMETER;
+		throw std::invalid_argument("Invalid parameters passed to WriteProcessMemoryW");
 	}
 
 	DeviceRaii device;
@@ -31,7 +32,7 @@ bool WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOID da
 
 bool WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuffer, int size) {
 	if (!targetAddress || size < 0) {
-		return STATUS_INVALID_PARAMETER;
+		throw std::invalid_argument("Invalid parameters passed to WriteProcessMemoryW");
 	}
 
 	DeviceRaii device;

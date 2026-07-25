@@ -7,11 +7,9 @@
 #include <string>
 #include <ntstatus.h>
 
-#include <iostream>
-
 bool ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
-		return STATUS_INVALID_PARAMETER;
+		throw std::invalid_argument("Invalid parameters passed to ReadProcessMemoryW");
 	}
 	
 	DeviceRaii device;
@@ -36,7 +34,7 @@ bool ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer
 
 bool ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0) {
-		return STATUS_INVALID_PARAMETER;
+		throw std::invalid_argument("Invalid parameters passed to ReadProcessMemoryW");
 	}
 
 	DeviceRaii device;
