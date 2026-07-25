@@ -8,21 +8,17 @@ NTSTATUS NameReadRequest(PCHAR targetName, PVOID address, ULONG size, PVOID outB
         return STATUS_NOT_FOUND;
     }
 
-    KAPC_STATE apcState;
-    KeStackAttachProcess(process, &apcState);
+    SIZE_T bytesRead = 0;
+    NTSTATUS status = MmCopyVirtualMemory(
+        process,
+        address,
+        PsGetCurrentProcess(),
+        outBuffer,
+        size,
+        KernelMode,
+        &bytesRead
+    );
 
-    NTSTATUS status = STATUS_UNSUCCESSFUL;
-
-    __try {
-        ProbeForRead(address, size, 1);
-        RtlCopyMemory(outBuffer, address, size);
-        status = STATUS_SUCCESS;
-    }
-    __except (EXCEPTION_EXECUTE_HANDLER) {  
-        status = GetExceptionCode();
-    }
-
-    KeUnstackDetachProcess(&apcState);
     ObDereferenceObject(process);
     return status;
 }
@@ -36,19 +32,17 @@ NTSTATUS HandleReadRequest(ULONG pid, PVOID address, ULONG size, PVOID outBuffer
         return status;
     }
 
-    KAPC_STATE apcState;
-    KeStackAttachProcess(targetProcess, &apcState);
-
-    __try {
-        ProbeForRead(address, size, 1);
-        RtlCopyMemory(outBuffer, address, size);
-        status = STATUS_SUCCESS;
-    }
-    __except (EXCEPTION_EXECUTE_HANDLER) {
-        status = GetExceptionCode();
-    }
-
-    KeUnstackDetachProcess(&apcState);
+    SIZE_T bytesRead = 0;
+    status = MmCopyVirtualMemory(
+        targetProcess,
+        address,
+        PsGetCurrentProcess(),
+        outBuffer,
+        size,
+        KernelMode,
+        &bytesRead
+    );
+    
     ObDereferenceObject(targetProcess);
 
     return status;
