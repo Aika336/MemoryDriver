@@ -71,6 +71,12 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         }
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+
+        if (!req->targetAddress || !req->dataBuffer || req->Size < 0) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
         status = HandleWriteRequest(req->handle, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
 
         if (NT_SUCCESS(status)) {
@@ -86,6 +92,12 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
         }
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
+
+        if (!req->targetAddress || !req->dataBuffer || req->Size < 0) {
+            status = STATUS_INVALID_PARAMETER;
+            break;
+        }
+
         status = NameWriteRequest(req->targetName, (PVOID)req->targetAddress, (PVOID)req->dataBuffer, req->Size);
 
         if (NT_SUCCESS(status)) {
