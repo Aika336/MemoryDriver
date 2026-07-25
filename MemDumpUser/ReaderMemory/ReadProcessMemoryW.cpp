@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-BOOL ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
+bool ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
 		return STATUS_INVALID_PARAMETER;
 	}
@@ -34,7 +34,7 @@ BOOL ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer
 	return state;
 }
 
-BOOL ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
+bool ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}

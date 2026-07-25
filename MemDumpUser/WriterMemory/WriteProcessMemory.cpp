@@ -6,7 +6,7 @@
 
 #include <ntstatus.h>
 
-NTSTATUS WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOID dataBuffer, int size) {
+bool WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOID dataBuffer, int size) {
 	if (!targetName || !targetAddress || size < 0 || strlen(targetName) > 15) {
 		return STATUS_INVALID_PARAMETER;
 	}
@@ -26,14 +26,10 @@ NTSTATUS WriteProcessMemoryW(const char* targetName, LPVOID targetAddress, LPVOI
 		NULL
 	);
 
-	if (!state) {
-		return STATUS_FATAL_APP_EXIT;
-	}
-
-	return STATUS_SUCCESS;
+	return state;
 }
 
-NTSTATUS WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuffer, int size) {
+bool WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuffer, int size) {
 	if (!targetAddress || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}
@@ -53,9 +49,5 @@ NTSTATUS WriteProcessMemoryW(int processId, LPVOID targetAddress, LPVOID dataBuf
 		NULL
 	);
 
-	if (!state) {
-		return STATUS_FATAL_APP_EXIT;
-	}
-
-	return STATUS_SUCCESS;
+	return state;
 }
