@@ -72,7 +72,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
 
-        if (!req->targetAddress || !req->dataBuffer || req->Size < 0) {
+        if (!req->targetAddress || !req->dataBuffer || req->Size <= 0) {
             status = STATUS_INVALID_PARAMETER;
             break;
         }
@@ -93,7 +93,7 @@ NTSTATUS DispatchDeviceControl(PDEVICE_OBJECT DeviceObject, PIRP Irp)
 
         PWRITE_REQUEST req = (PWRITE_REQUEST)Irp->AssociatedIrp.SystemBuffer;
 
-        if (!req->targetAddress || !req->dataBuffer || req->Size < 0) {
+        if (!req->targetAddress || !req->dataBuffer || req->Size <= 0) {
             status = STATUS_INVALID_PARAMETER;
             break;
         }
