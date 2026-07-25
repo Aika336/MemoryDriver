@@ -9,7 +9,7 @@
 
 #include <iostream>
 
-NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
+BOOL ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0 || strlen(targetName) > 15) {
 		return STATUS_INVALID_PARAMETER;
 	}
@@ -29,15 +29,12 @@ NTSTATUS ReadProcessMemoryW(const char* targetName, LPVOID address, LPVOID outBu
 		NULL
 	);
 
-	if (!state) {
-		return STATUS_FATAL_APP_EXIT;
-	}
 	// Add check for a returned size
 	
-	return STATUS_SUCCESS;
+	return state;
 }
 
-NTSTATUS ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
+BOOL ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size) {
 	if (!address || !outBuffer || size < 0) {
 		return STATUS_INVALID_PARAMETER;
 	}
@@ -55,9 +52,6 @@ NTSTATUS ReadProcessMemoryW(int pId, LPVOID address, LPVOID outBuffer, int size)
 		&bytesRet,
 		NULL
 	);
-	if (!state) {
-		return STATUS_FATAL_APP_EXIT;
-	}
 
-	return STATUS_SUCCESS;
+	return state;
 }
