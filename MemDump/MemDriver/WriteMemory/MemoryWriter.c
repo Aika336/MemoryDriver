@@ -8,34 +8,18 @@ NTSTATUS NameWriteRequest(PCHAR targetName, PVOID address, PVOID writeData, ULON
 		return STATUS_NOT_FOUND;
 	}
 
-	NTSTATUS status = STATUS_UNSUCCESSFUL;
-	PVOID buffer = ExAllocatePool2(POOL_FLAG_PAGED, (SIZE_T)size, 'WrNm');
+	SIZE_T bytesWritten = 0;
+	NTSTATUS status = MmCopyVirtualMemory(
+		PsGetCurrentProcess(),
+		writeData,
+		process,
+		address,
+		size,
+		UserMode,
+		&bytesWritten
+	);
 
-	if (!buffer) {
-		return STATUS_INSUFFICIENT_RESOURCES;
-	}
-
-	__try {
-		RtlCopyMemory(buffer, writeData, size);
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER) {
-		return GetExceptionCode();
-	}
-
-	KAPC_STATE apcState;
-	KeStackAttachProcess(process, &apcState);
-
-	__try {
-		RtlCopyMemory(address, buffer, size);
-		status = STATUS_SUCCESS;
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER) {
-		status = GetExceptionCode();
-	}
-	KeUnstackDetachProcess(&apcState);
 	ObDereferenceObject(process);
-
-	ExFreePool(buffer);
 
 	return status;
 }
@@ -49,34 +33,18 @@ NTSTATUS HandleWriteRequest(ULONG processId, PVOID address, PVOID writeData, ULO
 		return status;
 	}
 
-	PVOID buffer = ExAllocatePool2(POOL_FLAG_PAGED, (SIZE_T)size, 'WrId');
+	SIZE_T bytesWritten = 0;
+	status = MmCopyVirtualMemory(
+		PsGetCurrentProcess(),
+		writeData,
+		process,
+		address,
+		size,
+		UserMode,
+		&bytesWritten
+	);
 
-	if (!buffer) {
-		return STATUS_INSUFFICIENT_RESOURCES;
-	}
-
-	__try {
-		RtlCopyMemory(buffer, writeData, size);
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER) {
-		return GetExceptionCode();
-	}
-
-	KAPC_STATE apcState;
-	KeStackAttachProcess(process, &apcState);
-
-	__try {
-		RtlCopyMemory(address, buffer, size);
-		status = STATUS_SUCCESS;
-	}
-	__except (EXCEPTION_EXECUTE_HANDLER) {
-		status = GetExceptionCode();
-	}
-
-	KeUnstackDetachProcess(&apcState);
 	ObDereferenceObject(process);
-
-	ExFreePool(buffer);
 
 	return status;
 }
